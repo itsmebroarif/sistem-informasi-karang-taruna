@@ -16,14 +16,19 @@ class Event extends Model
     ];
 
     protected $casts = [
-        'event_date' => 'datetime', // otomatis jadi Carbon
+        'event_date' => 'date',
     ];
+
+    public function isActive()
+    {
+        return $this->status === 'active';
+    }
+
 
     public function items()
     {
         return $this->belongsToMany(Item::class, 'event_items')
-            ->withPivot('quantity_taken', 'quantity_returned')
+            ->withPivot('id', 'quantity_taken', 'quantity_returned')
             ->withTimestamps();
     }
 }
-

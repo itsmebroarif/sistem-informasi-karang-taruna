@@ -1,18 +1,26 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Item;
 
 class EventController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $events = Event::orderBy('event_date')->get();
         return view('events.index', compact('events'));
     }
-    public function create(){
+
+    public function create()
+    {
         return view('events.create');
     }
-    public function store(Request $request){
+
+    public function store(Request $request)
+    {
         $validated = $request->validate([
             'name' => 'required|string',
             'event_date' => 'required|date',
@@ -24,13 +32,19 @@ class EventController extends Controller
 
         Event::create($validated);
 
-        return redirect()->route('events.index')->with('success', 'Event berhasil dibuat');
+        return redirect()->route('events.index')
+            ->with('success', 'Event berhasil dibuat');
     }
 
     public function show(Event $event)
     {
+        // load barang yang sudah dipinjam event ini
         $event->load('items');
-        return view('events.show', compact('event'));
+
+        // ambil semua item untuk form peminjaman
+        $items = Item::with('eventItems')->get();
+
+        return view('events.show', compact('event', 'items'));
     }
 
     public function edit(Event $event)
@@ -51,12 +65,14 @@ class EventController extends Controller
 
         $event->update($validated);
 
-        return redirect()->route('events.index')->with('success', 'Event diperbarui');
+        return redirect()->route('events.index')
+            ->with('success', 'Event diperbarui');
     }
 
     public function destroy(Event $event)
     {
         $event->delete();
+
         return back()->with('success', 'Event dihapus');
     }
 }

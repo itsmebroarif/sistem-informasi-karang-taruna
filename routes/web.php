@@ -45,6 +45,8 @@ Route::post('/events/{event}/items', [EventItemController::class, 'store'])
 Route::patch('/event-items/{eventItem}', [EventItemController::class, 'update'])
     ->name('event-items.update');
 
+
+
 /*
 |--------------------------------------------------------------------------
 | MEMBER / ANGGOTA

@@ -58,7 +58,54 @@
                 </a>
             </div>
         </div>
-        
+        {{-- ================= ADMINISTRASI ================= --}}
+<div class="row">
+    <div class="col-12 mb-2">
+        <h5 class="fw-semibold text-muted">Administrasi (Online Mode)</h5>
+    </div>
+
+    {{-- TODO LIST --}}
+    <div class="col-md-4 mb-3">
+        <a href="https://freelancertoolkit-livid.vercel.app/todo"
+           target="_blank"
+           class="text-decoration-none">
+            <div class="card shadow-sm h-100 border-0">
+                <div class="card-body text-center">
+                    <i class="bi bi-check2-square fs-1 text-secondary"></i>
+                    <h6 class="mt-2 mb-0">Todo List</h6>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    {{-- FINANCE TRACKER --}}
+    <div class="col-md-4 mb-3">
+        <a href="https://freelancertoolkit-livid.vercel.app/finance"
+           target="_blank"
+           class="text-decoration-none">
+            <div class="card shadow-sm h-100 border-0">
+                <div class="card-body text-center">
+                    <i class="bi bi-cash-coin fs-1 text-success"></i>
+                    <h6 class="mt-2 mb-0">Finance Tracker</h6>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    {{-- MAIL BUILDER --}}
+    <div class="col-md-4 mb-3">
+        <a href="https://freelancertoolkit-livid.vercel.app/mail"
+           target="_blank"
+           class="text-decoration-none">
+            <div class="card shadow-sm h-100 border-0">
+                <div class="card-body text-center">
+                    <i class="bi bi-envelope-paper fs-1 text-primary"></i>
+                    <h6 class="mt-2 mb-0">Mail Builder</h6>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
     </div>
 </div>
 @endsection
