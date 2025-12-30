@@ -1,111 +1,195 @@
 @extends('layouts.app')
+<style>
+    /* PERSONA 3 RELOAD – KARANG TARUNA */
 
+.p3-wrapper {
+    min-height: 100vh;
+    padding: 3rem;
+    background: linear-gradient(160deg, #eaf4ff, #ffffff);
+    font-family: 'Inter', sans-serif;
+}
+
+/* HEADER */
+.p3-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.p3-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #0d3b66;
+}
+
+.p3-subtitle {
+    color: #5f8fb3;
+}
+
+.p3-clock {
+    background: rgba(255,255,255,.7);
+    backdrop-filter: blur(12px);
+    padding: 1rem 1.5rem;
+    border-radius: 16px;
+    text-align: right;
+    font-weight: 700;
+    color: #0d3b66;
+}
+
+.p3-clock small {
+    display: block;
+    font-weight: 400;
+    color: #7aa7c7;
+}
+
+/* MAIN GRID */
+.p3-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.p3-card {
+    background: rgba(255,255,255,.75);
+    backdrop-filter: blur(14px);
+    border-radius: 28px;
+    padding: 2.5rem 2rem;
+    text-decoration: none;
+    color: #0d3b66;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: all .4s ease;
+    box-shadow: 0 20px 40px rgba(13,59,102,.12);
+}
+
+.p3-card i {
+    font-size: 2.5rem;
+}
+
+.p3-card span {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.p3-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(13,59,102,.2);
+}
+
+/* SECTION */
+.p3-section h5 {
+    font-weight: 700;
+    color: #0d3b66;
+    margin-bottom: 1.5rem;
+}
+
+.p3-subgrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+    gap: 1.5rem;
+}
+
+.p3-subcard {
+    background: #0d3b66;
+    color: #fff;
+    padding: 1.8rem;
+    border-radius: 20px;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: .4s;
+}
+
+.p3-subcard i {
+    font-size: 2rem;
+    opacity: .9;
+}
+
+.p3-subcard small {
+    color: #b9d6ee;
+}
+
+.p3-subcard:hover {
+    background: #125a9c;
+    transform: translateX(10px);
+}
+
+</style>
 @section('content')
-<div class="app-content-header">
-    <div class="container-fluid">
-        <div class="row mb-3">
-            <div class="col-sm-6">
-                <h3 class="mb-0">Halaman Dashboard</h3>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-end">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                </ol>
-            </div>
+<div class="p3-wrapper">
+
+    {{-- HEADER --}}
+    <div class="p3-header">
+        <div>
+            <h1 class="p3-title">Dashboard</h1>
+            <p class="p3-subtitle">Sistem Internal Karang Taruna</p>
         </div>
 
-        <!-- Shortcut Quick Links -->
-        <div class="row mb-4">
-            <div class="col-md-3 mb-3">
-                <a href="{{ route('items.index') }}" class="text-decoration-none">
-                    <div class="card text-center shadow h-100">
-                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                            <i class="bi bi-box-seam display-4 text-primary mb-2"></i>
-                            <h5 class="card-title text-primary">Barang</h5>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-3 mb-3">
-                <a href="{{ route('members.index') }}" class="text-decoration-none">
-                    <div class="card text-center shadow h-100">
-                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                            <i class="bi bi-people display-4 text-success mb-2"></i>
-                            <h5 class="card-title text-success">Anggota</h5>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-3 mb-3">
-                <a href="{{ route('teams.index') }}" class="text-decoration-none">
-                    <div class="card text-center shadow h-100">
-                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                            <i class="bi bi-diagram-3 display-4 text-warning mb-2"></i>
-                            <h5 class="card-title text-warning">Tim</h5>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-3 mb-3">
-                <a href="{{ route('events.index') }}" class="text-decoration-none">
-                    <div class="card text-center shadow h-100">
-                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                            <i class="bi bi-calendar-event display-4 text-info mb-2"></i>
-                            <h5 class="card-title text-info">Event</h5>
-                        </div>
-                    </div>
-                </a>
-            </div>
+        <div class="p3-clock">
+            {{ now()->format('H:i') }}
+            <small>{{ now()->format('l, d M Y') }}</small>
         </div>
-        {{-- ================= ADMINISTRASI ================= --}}
-<div class="row">
-    <div class="col-12 mb-2">
-        <h5 class="fw-semibold text-muted">Administrasi (Online Mode)</h5>
     </div>
 
-    {{-- TODO LIST --}}
-    <div class="col-md-4 mb-3">
-        <a href="https://freelancertoolkit-livid.vercel.app/todo"
-           target="_blank"
-           class="text-decoration-none">
-            <div class="card shadow-sm h-100 border-0">
-                <div class="card-body text-center">
-                    <i class="bi bi-check2-square fs-1 text-secondary"></i>
-                    <h6 class="mt-2 mb-0">Todo List</h6>
-                </div>
-            </div>
+    {{-- MAIN MENU --}}
+    <div class="p3-grid">
+
+        <a href="{{ route('items.index') }}" class="p3-card">
+            <i class="bi bi-box-seam"></i>
+            <span>Barang</span>
         </a>
+
+        <a href="{{ route('members.index') }}" class="p3-card">
+            <i class="bi bi-people"></i>
+            <span>Anggota</span>
+        </a>
+
+        <a href="{{ route('teams.index') }}" class="p3-card">
+            <i class="bi bi-diagram-3"></i>
+            <span>Tim</span>
+        </a>
+
+        <a href="{{ route('events.index') }}" class="p3-card">
+            <i class="bi bi-calendar-event"></i>
+            <span>Event</span>
+        </a>
+
     </div>
 
-    {{-- FINANCE TRACKER --}}
-    <div class="col-md-4 mb-3">
-        <a href="https://freelancertoolkit-livid.vercel.app/finance"
-           target="_blank"
-           class="text-decoration-none">
-            <div class="card shadow-sm h-100 border-0">
-                <div class="card-body text-center">
-                    <i class="bi bi-cash-coin fs-1 text-success"></i>
-                    <h6 class="mt-2 mb-0">Finance Tracker</h6>
+    {{-- SECONDARY --}}
+    <div class="p3-section">
+        <h5>Administrasi</h5>
+
+        <div class="p3-subgrid">
+            <a href="{{ route('rundown.index') }}" class="p3-subcard">
+                <div>
+                    <strong>Rundown</strong>
+                    <small>Agenda acara</small>
                 </div>
-            </div>
-        </a>
+                <i class="bi bi-list-check"></i>
+            </a>
+
+            <a href="{{ route('kas.index') }}" class="p3-subcard">
+                <div>
+                    <strong>Keuangan</strong>
+                    <small>Kas & transaksi</small>
+                </div>
+                <i class="bi bi-cash-stack"></i>
+            </a>
+
+            <a href="{{ route('invoice.index') }}" class="p3-subcard">
+                <div>
+                    <strong>Invoice</strong>
+                    <small>Dokumen resmi</small>
+                </div>
+                <i class="bi bi-receipt"></i>
+            </a>
+        </div>
     </div>
 
-    {{-- MAIL BUILDER --}}
-    <div class="col-md-4 mb-3">
-        <a href="https://freelancertoolkit-livid.vercel.app/mail"
-           target="_blank"
-           class="text-decoration-none">
-            <div class="card shadow-sm h-100 border-0">
-                <div class="card-body text-center">
-                    <i class="bi bi-envelope-paper fs-1 text-primary"></i>
-                    <h6 class="mt-2 mb-0">Mail Builder</h6>
-                </div>
-            </div>
-        </a>
-    </div>
-</div>
-    </div>
 </div>
 @endsection

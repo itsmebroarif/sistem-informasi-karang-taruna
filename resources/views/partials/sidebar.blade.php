@@ -1,10 +1,9 @@
 <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
     <div class="sidebar-brand">
         <a href="{{ url('/') }}" class="brand-link">
-            <img src="{{ asset('images\icons\laravel.svg') }}" alt="Logo"
-                class="brand-image img-circle elevation-3" style="opacity: .8">
-            <br>
-            <span class="brand-text fw-dark">Sistem Karang Taruna</span>
+            <img src="{{ asset('images\icons\laravel.svg') }}" alt="Logo" class="brand-image img-circle elevation-3"
+                style="opacity: .8">
+            <span class="brand-text fw-dark">SISKATAR</span>
         </a>
     </div>
     <div class="sidebar-wrapper">
@@ -91,8 +90,34 @@
                         </li>
                     </ul>
                 </li>
+
+                {{-- KAS --}}
+                <li class="nav-item">
+                    <a href="{{ route('kas.index') }}"
+                        class="nav-link {{ request()->routeIs('kas.*') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-cash-stack"></i>
+                        <p>Uang Kas</p>
+                    </a>
+                </li>
+
+                {{-- INVOICE --}}
+                <li class="nav-item">
+                    <a href="{{ route('invoice.index') }}"
+                        class="nav-link {{ request()->routeIs('invoice.*') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-receipt"></i>
+                        <p>Invoice</p>
+                    </a>
+                </li>
+
+                {{-- RUNDOWN --}}
+                <li class="nav-item">
+                    <a href="{{ route('rundown.index') }}"
+                        class="nav-link {{ request()->routeIs('rundown.*') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-list-check"></i>
+                        <p>Rundown Acara</p>
+                    </a>
+                </li>
             </ul>
-            
         </nav>
     </div>
 </aside>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid mt-4">
     <h3>Buat Tim Baru</h3>
 
     <form action="{{ route('teams.store') }}" method="POST">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid mt-3">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h3>Daftar Tim</h3>
         <a href="{{ route('teams.create') }}" class="btn btn-primary">

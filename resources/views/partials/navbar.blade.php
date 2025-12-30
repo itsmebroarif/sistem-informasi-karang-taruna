@@ -1,60 +1,65 @@
-<nav class="app-header navbar navbar-expand bg-body">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+  <div class="container-fluid">
 
-      {{-- LEFT --}}
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
-            <i class="bi bi-list"></i>
-          </a>
-        </li>
+      {{-- BRAND --}}
+      <a class="navbar-brand fw-semibold" href="{{ route('dashboard') }}">
+          <i class="bi bi-box-seam me-1"></i>
+          Inventaris Karang Taruna
+      </a>
 
-        <li class="nav-item d-none d-md-block">
-          <span class="nav-link fw-semibold">
-            Internal Admin Panel
-          </span>
-        </li>
-      </ul>
+      {{-- TOGGLER --}}
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+          <span class="navbar-toggler-icon"></span>
+      </button>
 
-      {{-- RIGHT --}}
-      <ul class="navbar-nav ms-auto">
+      <div class="collapse navbar-collapse" id="mainNavbar">
 
-        {{-- FULLSCREEN --}}
-        <li class="nav-item">
-          <a class="nav-link" href="#" data-lte-toggle="fullscreen">
-            <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i>
-            <i data-lte-icon="minimize" class="bi bi-fullscreen-exit" style="display: none"></i>
-          </a>
-        </li>
 
-        {{-- USER MENU --}}
-        <li class="nav-item dropdown user-menu">
-          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgAqRaFTzMDUvkKsGPnjojD4APa34rVF_JOg&s"
-              class="user-image rounded-circle shadow"
-              alt="User Image"
-            />
-            <span class="d-none d-md-inline">Arif Alexander</span>
-          </a>
+          {{-- RIGHT MENU --}}
+          <ul class="navbar-nav ms-auto">
 
-          <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle d-flex align-items-center gap-2"
+                     href="#"
+                     role="button"
+                     data-bs-toggle="dropdown"
+                     aria-expanded="false">
 
-            {{-- HEADER --}}
-            <li class="user-header text-bg-primary">
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgAqRaFTzMDUvkKsGPnjojD4APa34rVF_JOg&s"
-                class="rounded-circle shadow"
-                alt="User Image"
-              />
-              <p>
-                Arif Alexander
-                <small>Internal System</small>
-              </p>
-            </li>
+                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgAqRaFTzMDUvkKsGPnjojD4APa34rVF_JOg&s"
+                           width="32"
+                           height="32"
+                           class="rounded-circle border">
+
+                      <span class="fw-semibold">
+                          {{ auth()->user()->name }}
+                      </span>
+                  </a>
+
+                  <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+
+                      <li class="px-3 py-2">
+                          <div class="fw-semibold">
+                              {{ auth()->user()->name }}
+                          </div>
+                          <small class="text-muted">Internal System</small>
+                      </li>
+
+                      <li><hr class="dropdown-divider"></li>
+
+                      <li class="px-3">
+                          <form method="POST" action="{{ route('logout') }}">
+                              @csrf
+                              <button class="btn btn-outline-danger w-100">
+                                  <i class="bi bi-box-arrow-right"></i> Logout
+                              </button>
+                          </form>
+                      </li>
+
+                  </ul>
+              </li>
+
           </ul>
-        </li>
 
-      </ul>
-    </div>
+      </div>
+  </div>
 </nav>
